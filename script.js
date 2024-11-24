@@ -15,6 +15,7 @@ document.querySelector(".abs_playgain").addEventListener("click", () => {
   document.querySelector(".input_box").value = "";
   document.querySelector(".guessed_num").textContent = "?";
   rightScore == 20;
+  secretNum = Math.ceil(Math.random() * 20) + 1;
 });
 
 buttonListner.addEventListener("click", () => {
@@ -26,6 +27,22 @@ buttonListner.addEventListener("click", () => {
     document.querySelector(".guess_remark").textContent = "no number! ";
   } else if (guessedNum < 1 || guessedNum > 20) {
     document.querySelector(".guess_remark").textContent = "number out of bound";
+  } else if (guessedNum > secretNum && guessedNum - secretNum > 3) {
+    document.querySelector(".guess_remark").textContent = "very high";
+    rightScore--;
+    document.querySelector(".right_score_num").textContent = rightScore;
+    if (rightScore < 1) {
+      document.querySelector(".right_score_num").textContent = 0;
+      document.querySelector(".guess_remark").textContent = "u lost the game";
+    }
+  } else if (secretNum > guessedNum && secretNum - guessedNum > 3) {
+    document.querySelector(".guess_remark").textContent = "very low";
+    rightScore--;
+    document.querySelector(".right_score_num").textContent = rightScore;
+    if (rightScore < 1) {
+      document.querySelector(".right_score_num").textContent = 0;
+      document.querySelector(".guess_remark").textContent = "u lost the game";
+    }
   } else if (guessedNum > secretNum) {
     document.querySelector(".guess_remark").textContent = "bit high";
     rightScore--;
