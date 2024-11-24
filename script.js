@@ -14,7 +14,7 @@ document.querySelector(".abs_playgain").addEventListener("click", () => {
   document.querySelector(".right_score_num").textContent = 20;
   document.querySelector(".input_box").value = "";
   document.querySelector(".guessed_num").textContent = "?";
-  rightScore == 20;
+  rightScore = 20;
   secretNum = Math.ceil(Math.random() * 20) + 1;
 });
 
