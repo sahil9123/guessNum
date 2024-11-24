@@ -1,125 +1,183 @@
-/* 1. Use a more-intuitive box-sizing model */
+/* Base styles and resets */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-/* 2. Remove default margin */
-* {
   margin: 0;
+  padding: 0;
 }
 
 body {
-  /* 3. Add accessible line-height */
-  /* 4. Improve text rendering */
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f0f8ff;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 5. Improve media defaults */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background: none;
 }
 
-/* 6. Inherit fonts for form controls */
-input,
-button,
-textarea,
-select {
+input {
   font: inherit;
 }
 
-/* 7. Avoid text overflows */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-/* 8. Improve line wrapping */
-p {
-  text-wrap: pretty;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-}
-
-/*
-    9. Create a root stacking context
-  */
-#root,
-#__next {
-  isolation: isolate;
-}
-
 .main_component {
-  padding: 2rem;
-  background-color: cyan;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 3rem;
-  align-items: center;
-}
-.title_heading {
-  font-size: 25px;
-}
-.abs_playgain {
-  position: fixed;
-  left: 1%;
-  cursor: pointer;
-  color: blue;
-}
-.abs_range {
-  position: fixed;
-  right: 1%;
-  color: brown;
-}
-.score_input_main {
-  display: flex;
-  gap: 3rem;
-  padding: 2rem;
-}
-.input_comp {
-  background-color: aquamarine;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  position: relative;
+}
+
+.title_heading {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.abs_playgain,
+.abs_range {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.abs_playgain {
+  top: 1rem;
+  left: 1rem;
+  background-color: #4caf50;
+  color: white;
+}
+
+.abs_playgain:hover {
+  background-color: #45a049;
+}
+
+.abs_range {
+  top: 1rem;
+  right: 1rem;
+  background-color: #fff;
+  color: #333;
 }
 
 .guessed_num {
-  background-color: black;
-  padding: 0.5rem 2rem;
-  font-size: 50px;
-  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.score_input_main {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.input_comp {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.input_heading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.input_comp_inner {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input_box {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.guess_btn {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
   color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.guess_btn:hover {
+  background-color: #0056b3;
 }
 
 .guess_stats {
-  background-color: red;
-  color: white;
-  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.guess_remark {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.right_score,
+.high_score {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .score_input_main {
+    flex-direction: column;
+  }
+
+  .input_comp,
+  .guess_stats {
+    width: 100%;
+  }
+
+  .title_heading {
+    font-size: 2rem;
+  }
+
+  .guessed_num {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .abs_playgain,
+  .abs_range {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .main_component {
+    padding: 1rem;
+  }
 }
