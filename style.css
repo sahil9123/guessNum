@@ -94,7 +94,6 @@ h6 {
 .score_input_main {
   display: flex;
   gap: 3rem;
-  width: 80%;
   padding: 2rem;
 }
 .input_comp {
